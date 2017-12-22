@@ -1,4 +1,6 @@
-public class Node {
+import java.io.Serializable;
+
+public class Node implements Serializable {
     private Byte value;
     private int weight;
     private Node left = null;

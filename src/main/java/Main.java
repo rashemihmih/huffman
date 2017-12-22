@@ -8,17 +8,24 @@ public class Main {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) {
-        System.out.println("1 - сжать\n2 - распаковать\n3 - выход");
+        Huffman huffman = new Huffman();
         int mode = 0;
         do {
             try {
+                System.out.println("Имя файла:");
+                String source = reader.readLine();
+                String destination = StringUtils.substringBeforeLast(source, ".") + "_huffman" + "." +
+                        StringUtils.substringAfterLast(source, ".");
+                System.out.println("1 - сжать\n2 - распаковать\n3 - выход");
                 mode = Integer.parseInt(reader.readLine());
                 switch (mode) {
                     case 1:
-                        encode();
+                        huffman.encode(source, destination);
+                        System.out.println("Файл сжат: " + destination);
                         break;
                     case 2:
-                        decode();
+                        huffman.decode(source, destination);
+                        System.out.println("Файл распакован: " + destination);
                         break;
                     case 3:
                         break;
@@ -32,18 +39,5 @@ public class Main {
                 System.out.println("Ошибка ввода: " + e.getMessage());
             }
         } while (mode != 3);
-    }
-
-    private static void encode() throws IOException {
-        System.out.println("Имя файла:");
-        String source = reader.readLine();
-        String destination = StringUtils.substringBeforeLast(source, ".") + "_huffman" +
-                StringUtils.substringAfterLast(source, ".");
-        Huffman huffman = new Huffman();
-        huffman.encode(source, destination);
-    }
-
-    private static void decode() {
-
     }
 }

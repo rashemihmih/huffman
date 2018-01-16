@@ -28,7 +28,7 @@ public class Huffman {
         Node tree;
         List<Byte> sourceBytes = new ArrayList<>();
         try (InputStream is = new FileInputStream(source);
-             ObjectInputStream ois = new ObjectInputStream(is)) {
+            ObjectInputStream ois = new ObjectInputStream(is)) {
             tree = (Node) ois.readObject();
             byte[] buf = new byte[4096];
             while (is.available() > 0) {
@@ -59,7 +59,7 @@ public class Huffman {
         }
         List<Byte> decoded = new ArrayList<>();
         Node node = tree;
-        for (int i = 0; i < sourceBinary.length(); i++){
+        for (int i = 0; i < sourceBinary.length(); i++) {
             char c = sourceBinary.charAt(i);
             if (c == '0') {
                 node = node.getLeft();
